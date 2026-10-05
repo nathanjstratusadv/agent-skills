@@ -1,7 +1,7 @@
 ---
 name: backplan
-description: "Use when starting any task: plan from the end state back."
-version: 0.1.0
+description: "Plan tasks from the end state backward before acting."
+version: 0.2.0
 author: Nathan (nathanjstratusadv), Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -45,8 +45,8 @@ one or two lines, then work. Same discipline, ceremony dropped.
 ## Procedure (full gear)
 
 1. **Inventory step 0 — the current state.** Inspect, don't assume: read the
-   relevant files (`read_file`, `search_files`), check running processes and
-   versions (`terminal`), note the environment.
+   relevant files, search the codebase, check running processes and versions,
+   note the environment.
    *Done when:* a short list of facts you *verified*, not remembered.
 2. **State the end state.** One sentence, observable from outside: a file that
    exists, a service answering, a test passing, a report with cited sources.
@@ -62,9 +62,10 @@ one or two lines, then work. Same discipline, ceremony dropped.
    *Done when:* step 1 follows directly from verified step-0 facts.
 5. **Reverse into a forward plan.** Each step: the action + a checkable
    completion criterion.
-6. **Present for sign-off.** End state, completion test, plan (one line per
-   step), and the riskiest step. Wait for a "yes" before executing. If the
-   user redirects, re-derive only the part the change touches.
+6. **Present for approval.** End state, completion test, plan (one line per
+   step), and the riskiest step. Wait for a "yes" before executing — or
+   proceed without it only if you are running headless, and note that in the
+   plan doc. If the user redirects, re-derive only the part the change touches.
 7. **Write the plan doc** (format below) to
    `<project-root>/.backplan/<short-goal>-<YYYY-MM-DD>.md` — *before* the first
    execution step.

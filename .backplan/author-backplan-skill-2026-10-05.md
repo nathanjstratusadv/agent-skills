@@ -42,3 +42,9 @@ Completion test passed: `git ls-remote origin main` =
   credentials). Switched `origin` to `git@github.com:nathanjstratusadv/agent-skills.git`;
   the existing `~/.ssh/id_ed25519` key already authenticates as
   `nathanjstratusadv`, so the SSH push succeeded. Remote now uses SSH.
+- (post-closeout) `backplan/` → `.backplan/` per user rename (commit 68d4c5a).
+- (post-closeout) Genericity pass v0.2.0: step 1 dropped Hermes tool names
+  (`read_file`/`search_files`/`terminal`) for agent-neutral capability
+  language; sign-off step 6 gained a headless-agent carve-out; description
+  rewritten to 53 chars ("Plan tasks from the end state backward before
+  acting.") so it still drives auto-loading in non-Hermes agents.
