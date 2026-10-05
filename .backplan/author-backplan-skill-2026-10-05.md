@@ -48,3 +48,12 @@ Completion test passed: `git ls-remote origin main` =
   language; sign-off step 6 gained a headless-agent carve-out; description
   rewritten to 53 chars ("Plan tasks from the end state backward before
   acting.") so it still drives auto-loading in non-Hermes agents.
+- (post-closeout) v0.3.0 user pass (Nathan, from field testing): goal-first
+  step 1 ("never plan toward a goal you invented"), fast-gear clarify rule,
+  "Goal from assumption" pitfall, metadata flattened to `hermes-tags`.
+- (post-closeout) v0.3.1 review pass: step 1 done-criterion split from
+  observability (goal = crisp + unambiguous, intent-level; step 3 owns
+  observability with its own done-criterion); step 1 gained a headless
+  carve-out + unambiguous-goal softener; plan-doc End-state annotation
+  corrected. `hermes-tags` kept flattened per user instruction (restored
+  nested form rejected: breaks other agents' loaders).

@@ -1,27 +1,29 @@
 ---
 name: backplan
 description: "Plan tasks from the end state backward before acting."
-version: 0.2.0
+version: 0.3.1
 author: Nathan (nathanjstratusadv), Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
 metadata:
-  hermes:
-    tags: [planning, workflow, execution, backplan]
+  hermes-tags: planning, workflow, execution, backplan
 ---
 
 # Backplan (Working-Backwards Task Planning)
 
-Every task starts at its end. Before acting, derive the end state and its
-completion test, walk backwards from it to the verified current state (step 0),
-then execute the resulting chain forward. Full plans are documented in a
-per-project `.backplan/` folder and committed alongside the work they planned.
+Every task starts at its end. Before acting, lock the end goal with the user
+through questions, derive its completion test, walk backwards from it to the
+verified current state (step 0), then execute the resulting chain forward.
+Full plans are documented in a per-project `.backplan/` folder and committed
+alongside the work they planned.
 
 ## When to Use
 
 - On every request, in one of two gears (choose the gear first, always):
   - **Fast gear** — single-step, local, nothing shared or remote is touched.
-    One line: end state, completion test, next move. No doc.
+    One line: end state, completion test, next move. No doc. If the goal is
+    not already clear from the request, ask one quick clarifying question
+    before working — never assume.
   - **Full gear** — multi-step, or touches shared/remote systems. Full
     backwards-decomposition, sign-off, plan doc in `.backplan/`.
 - Don't use for: pure conversation or questions — the answer *is* the end
@@ -44,39 +46,52 @@ one or two lines, then work. Same discipline, ceremony dropped.
 
 ## Procedure (full gear)
 
-1. **Inventory step 0 — the current state.** Inspect, don't assume: read the
+1. **Define the end goal — ask before anything else.** Before inspecting
+   anything, ask the user targeted questions until the goal is very clear:
+   what outcome they want, scope in and out, constraints, and what "done"
+   looks like to them. Restate the goal in one sentence and get the user's
+   "yes" (or corrections) before moving on — or, if headless, derive the
+   goal from the request and context, state it in the plan doc, and flag it
+   as assumed. If the request already pins the goal unambiguously, restate it
+   in one line and proceed; the step-7 approval still covers it. Never plan
+   toward a goal you invented.
+   *Done when:* the user has confirmed one crisp, unambiguous sentence of
+   goal — their intent, not necessarily observable; step 3 makes it so — or,
+   headless, the assumed goal is flagged in the plan doc.
+2. **Inventory step 0 — the current state.** Inspect, don't assume: read the
    relevant files, search the codebase, check running processes and versions,
    note the environment.
    *Done when:* a short list of facts you *verified*, not remembered.
-2. **State the end state.** One sentence, observable from outside: a file that
-   exists, a service answering, a test passing, a report with cited sources.
-   Never "improved", "cleaned up", "works better".
-3. **Write the completion test.** The concrete check that proves the end state
+3. **State the end state.** From the confirmed goal: one sentence, observable
+   from outside: a file that exists, a service answering, a test passing,
+   a report with cited sources. Never "improved", "cleaned up", "works better".
+   *Done when:* you can point at the specific thing a checker would inspect.
+4. **Write the completion test.** The concrete check that proves the end state
    holds: a command to run, a URL to hit, a file to read, output to see.
    *Done when:* the test is runnable *as written*, right now if the end state
    were true.
-4. **Walk backwards.** Ask: "what must be true immediately before the end
+5. **Walk backwards.** Ask: "what must be true immediately before the end
    state?" — that is step N-1. Repeat until the chain hangs on step 0. Each
    step must depend on the one before it; if a step needs nothing from its
    predecessor it is parallel, not sequential — label it so.
    *Done when:* step 1 follows directly from verified step-0 facts.
-5. **Reverse into a forward plan.** Each step: the action + a checkable
+6. **Reverse into a forward plan.** Each step: the action + a checkable
    completion criterion.
-6. **Present for approval.** End state, completion test, plan (one line per
+7. **Present for approval.** End state, completion test, plan (one line per
    step), and the riskiest step. Wait for a "yes" before executing — or
    proceed without it only if you are running headless, and note that in the
    plan doc. If the user redirects, re-derive only the part the change touches.
-7. **Write the plan doc** (format below) to
+8. **Write the plan doc** (format below) to
    `<project-root>/.backplan/<short-goal>-<YYYY-MM-DD>.md` — *before* the first
    execution step.
-8. **Execute, re-anchoring at each step.** Before each step ask: does this pull
+9. **Execute, re-anchoring at each step.** Before each step ask: does this pull
    the end state closer, and is it still reachable? If a step's precondition
    turns out false, that is a deviation: record it, re-derive from that step
    forward, then continue. Never push through a false precondition silently.
-9. **Close the loop.** Run the completion test and capture its real output.
-   Report done only on that evidence. Commit the plan doc with the work.
-   If the test cannot be run, report the blocker honestly — a pass that was
-   never observed is worse than an admitted blocker.
+10. **Close the loop.** Run the completion test and capture its real output.
+    Report done only on that evidence. Commit the plan doc with the work.
+    If the test cannot be run, report the blocker honestly — a pass that was
+    never observed is worse than an admitted blocker.
 
 ## Plan Document
 
@@ -88,7 +103,7 @@ Location: `<project-root>/.backplan/` (create if missing). Name:
 # <short goal> — <YYYY-MM-DD>
 
 ## End state
-<one observable sentence>
+<one observable sentence, derived in step 3 from the goal confirmed in step 1>
 
 ## Completion test
 <concrete, runnable check(s)>
@@ -115,7 +130,10 @@ Living-doc rules:
 
 ## Pitfalls
 
-- **Unobservable end state.** "The code is cleaner" ✗ — "clippy reports zero
+- **Goal from assumption.** A plan to the wrong end state wastes every step
+  that hangs on it — backwards amplifies the error. "The code is cleaner" is
+  not a goal. Ask the goal questions before touching step 0.
+- **Unobservable end state.** "The deploy is fine" ✗ — "clippy reports zero
   warnings on the touched modules" ✓. If you cannot point at something to
   inspect, it is not an end state.
 - **Completion test that is a step, not a state.** "Wrote the test" ✗ — "the
