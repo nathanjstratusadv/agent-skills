@@ -15,7 +15,7 @@ metadata:
 Every task starts at its end. Before acting, derive the end state and its
 completion test, walk backwards from it to the verified current state (step 0),
 then execute the resulting chain forward. Full plans are documented in a
-per-project `backplan/` folder and committed alongside the work they planned.
+per-project `.backplan/` folder and committed alongside the work they planned.
 
 ## When to Use
 
@@ -23,7 +23,7 @@ per-project `backplan/` folder and committed alongside the work they planned.
   - **Fast gear** — single-step, local, nothing shared or remote is touched.
     One line: end state, completion test, next move. No doc.
   - **Full gear** — multi-step, or touches shared/remote systems. Full
-    backwards-decomposition, sign-off, plan doc in `backplan/`.
+    backwards-decomposition, sign-off, plan doc in `.backplan/`.
 - Don't use for: pure conversation or questions — the answer *is* the end
   state, there is nothing to plan. Also not when the user explicitly says
   "just do it, no planning" — comply, but re-plan honestly if the job goes
@@ -66,7 +66,7 @@ one or two lines, then work. Same discipline, ceremony dropped.
    step), and the riskiest step. Wait for a "yes" before executing. If the
    user redirects, re-derive only the part the change touches.
 7. **Write the plan doc** (format below) to
-   `<project-root>/backplan/<short-goal>-<YYYY-MM-DD>.md` — *before* the first
+   `<project-root>/.backplan/<short-goal>-<YYYY-MM-DD>.md` — *before* the first
    execution step.
 8. **Execute, re-anchoring at each step.** Before each step ask: does this pull
    the end state closer, and is it still reachable? If a step's precondition
@@ -79,7 +79,7 @@ one or two lines, then work. Same discipline, ceremony dropped.
 
 ## Plan Document
 
-Location: `<project-root>/backplan/` (create if missing). Name:
+Location: `<project-root>/.backplan/` (create if missing). Name:
 `<short-goal-description>-<YYYY-MM-DD>.md`, kebab-case, 3–6 words
 (`serve-fp8-on-pve2-2026-10-05.md`). Same goal, same day: append `-2`, `-3`.
 
@@ -131,7 +131,7 @@ Living-doc rules:
 
 ## Verification
 
-- Full gear: the doc exists at `backplan/<short-goal>-<date>.md` and is
+- Full gear: the doc exists at `.backplan/<short-goal>-<date>.md` and is
   committed; its completion test was run and its real output is quoted in the
   final report.
 - Every mid-execution plan change has a matching deviations entry with a why.
