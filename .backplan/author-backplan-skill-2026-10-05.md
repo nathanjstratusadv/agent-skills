@@ -57,3 +57,9 @@ Completion test passed: `git ls-remote origin main` =
   carve-out + unambiguous-goal softener; plan-doc End-state annotation
   corrected. `hermes-tags` kept flattened per user instruction (restored
   nested form rejected: breaks other agents' loaders).
+- (post-closeout) v0.3.2: removed the `metadata` block entirely. Spec
+  research (agentskills.io): `metadata` must be a flat string→string map, so
+  the nested Hermes form is spec-nonconformant, but the flattened
+  `hermes-tags` — while spec-compliant — is read by nobody (Hermes parses
+  nested, other agents ignore it). Dead weight removed; if a shared tag
+  convention emerges, re-add it per the spec then.

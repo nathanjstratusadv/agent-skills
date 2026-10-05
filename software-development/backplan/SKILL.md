@@ -1,12 +1,10 @@
 ---
 name: backplan
 description: "Plan tasks from the end state backward before acting."
-version: 0.3.1
+version: 0.3.2
 author: Nathan (nathanjstratusadv), Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
-metadata:
-  hermes-tags: planning, workflow, execution, backplan
 ---
 
 # Backplan (Working-Backwards Task Planning)
