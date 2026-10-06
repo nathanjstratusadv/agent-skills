@@ -1,7 +1,7 @@
 ---
 name: backplan
 description: "Plan tasks from the end state backward before acting."
-version: 0.3.4
+version: 0.3.5
 author: Nathan (nathanjstratusadv), Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -123,14 +123,14 @@ Location: `<project-root>/.backplan/` (create if missing). Name:
 2. <step> — done when <criterion>
 
 ## Deviations
-(none yet — when one happens, start the list: `1. <HH:MM> — <what changed> — <why>`)
+(none yet — when one happens, start the list: `1. <what changed> — <why>`)
 ```
 
 Living-doc rules:
 
 - Update the doc the *moment* the plan shifts — never "later".
 - `## Deviations` is an ordered list, append-only: one entry per change,
-  `1. <HH:MM> — <what changed> — <why>`, numbered in the order the changes
+  `1. <what changed> — <why>`, numbered in the order the changes
   happened. Append at the end with the next number; never renumber, reorder,
   or delete. Keep the original step visible (strike it through) so
   deviations have something to deviate *from*.
