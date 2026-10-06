@@ -123,7 +123,7 @@ Location: `<project-root>/.backplan/` (create if missing). Name:
 2. <step> — done when <criterion>
 
 ## Deviations
-none yet
+(none yet — when one happens, start the list: `1. <HH:MM> — <what changed> — <why>`)
 ```
 
 Living-doc rules:
