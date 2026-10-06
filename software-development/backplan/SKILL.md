@@ -1,7 +1,7 @@
 ---
 name: backplan
 description: "Plan tasks from the end state backward before acting."
-version: 0.3.2
+version: 0.3.3
 author: Nathan (nathanjstratusadv), Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -58,8 +58,11 @@ one or two lines, then work. Same discipline, ceremony dropped.
    headless, the assumed goal is flagged in the plan doc.
 2. **Inventory step 0 — the current state.** Inspect, don't assume: read the
    relevant files, search the codebase, check running processes and versions,
-   note the environment.
-   *Done when:* a short list of facts you *verified*, not remembered.
+   note the environment. Also learn the project's house style: how neighbors
+   are named, where things live, which patterns and utilities already exist
+   that the change should follow or extend.
+   *Done when:* a short list of facts you *verified*, not remembered — plus
+   the conventions the change will follow.
 3. **State the end state.** From the confirmed goal: one sentence, observable
    from outside: a file that exists, a service answering, a test passing,
    a report with cited sources. Never "improved", "cleaned up", "works better".
@@ -83,7 +86,13 @@ one or two lines, then work. Same discipline, ceremony dropped.
    `<project-root>/.backplan/<short-goal>-<YYYY-MM-DD>.md` — *before* the first
    execution step.
 9. **Execute, re-anchoring at each step.** Before each step ask: does this pull
-   the end state closer, and is it still reachable? If a step's precondition
+   the end state closer, and is it still reachable? Implement every step in
+   the project's own structure and style — naming after the neighbors, file
+   placement where the project places things, existing patterns and
+   utilities reused before new ones are introduced — so the change reads as
+   if the project's authors wrote it. A step that requires a structure the
+   project doesn't have yet is a structural decision: flag it in deviations
+   before building it, not as a quiet default. If a step's precondition
    turns out false, that is a deviation: record it, re-derive from that step
    forward, then continue. Never push through a false precondition silently.
 10. **Close the loop.** Run the completion test and capture its real output.
@@ -138,6 +147,11 @@ Living-doc rules:
   suite passes including the new case" ✓.
 - **Step 0 from memory.** A stale assumption poisons every step that hangs on
   it. Inspect.
+- **Transplanted conventions.** Code that works but reads like an import —
+  its own naming scheme, a duplicated utility, a new directory nobody
+  asked for. Test: would a project maintainer reading the diff assume it was
+  written by the project's authors? If not, rework it to fit before calling
+  it done.
 - **Dropping the gear to save time.** Full gear exists because shared/remote
   work is expensive to reverse; the sign-off is cheap insurance, not ceremony.
 - **Silent plan drift.** A plan that changed without a deviations entry is a

@@ -63,3 +63,10 @@ Completion test passed: `git ls-remote origin main` =
   `hermes-tags` — while spec-compliant — is read by nobody (Hermes parses
   nested, other agents ignore it). Dead weight removed; if a shared tag
   convention emerges, re-add it per the spec then.
+- (post-closeout) v0.3.3: added the project-consistency rule. Step 2 now
+  inventories the house style (naming, placement, existing patterns/utilities)
+  with its done-criterion extended; step 9 requires every step to be
+  implemented in the project's own structure and style ("reads as if the
+  project's authors wrote it") and routes structural departures through
+  deviations; new pitfall "Transplanted conventions" with the maintainer-diff
+  test.
