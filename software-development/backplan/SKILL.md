@@ -1,7 +1,7 @@
 ---
 name: backplan
 description: "Plan tasks from the end state backward before acting."
-version: 0.3.3
+version: 0.3.4
 author: Nathan (nathanjstratusadv), Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -129,9 +129,11 @@ none yet
 Living-doc rules:
 
 - Update the doc the *moment* the plan shifts — never "later".
-- `## Deviations` is append-only: one line per change,
-  `- <HH:MM> — <what changed> — <why>`. Keep the original step visible
-  (strike it through) so deviations have something to deviate *from*.
+- `## Deviations` is an ordered list, append-only: one entry per change,
+  `1. <HH:MM> — <what changed> — <why>`, numbered in the order the changes
+  happened. Append at the end with the next number; never renumber, reorder,
+  or delete. Keep the original step visible (strike it through) so
+  deviations have something to deviate *from*.
 - On completion the doc shows the path actually taken, not the original dream.
 - Commit the doc with the feature it planned.
 
